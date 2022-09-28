@@ -35,15 +35,6 @@ public class Todo {
     }
 
 
-    String toJson() {
-
-        Gson gson = new Gson();
-
-        String jsonInString = gson.toJson(this);
-
-        return jsonInString;
-    }
-
     // Do not change equals and hashcode!
 
     @Override
