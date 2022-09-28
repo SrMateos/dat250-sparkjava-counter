@@ -48,6 +48,18 @@ public class App {
             return counters.toJson();
         	
         });
+
+		put("/counters/red", (req,res) -> {
+			Gson gson = new Gson();
+			counters.setRed(gson.fromJson(req.body(), Counters.class).getRed());
+			return counters.toJson();
+		});
+
+		put("/counters/green", (req,res) -> {
+			Gson gson = new Gson();
+			counters.setGreen(gson.fromJson(req.body(), Counters.class).getGreen());
+			return counters.toJson();
+		});
     }
     
 }

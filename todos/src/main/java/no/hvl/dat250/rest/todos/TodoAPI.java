@@ -1,11 +1,17 @@
 package no.hvl.dat250.rest.todos;
 
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+
 import static spark.Spark.*;
 
 /**
  * Rest-Endpoint.
  */
 public class TodoAPI {
+
+    private static HashMap<Long,Todo> todo = new HashMap<>();
 
     public static void main(String[] args) {
         if (args.length > 0) {
@@ -16,6 +22,20 @@ public class TodoAPI {
 
         after((req, res) -> res.type("application/json"));
 
-        // TODO: Implement API, such that the testcases succeed.
+        // Create
+        post("/todo", (req, res) -> {
+            Gson gson = new Gson();
+            Todo t = gson.fromJson(req.body(),Todo.class);
+            todo.put(t.getId(), t);
+            return t.toJson();
+        });
+
+        // Read
+        /*get("/todo", (req, res) -> {
+            for(Todo t: todo){
+                t.toJson();
+            }
+        });
+        */
     }
 }
